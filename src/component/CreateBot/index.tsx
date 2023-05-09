@@ -1,4 +1,4 @@
-import { NavLink, Navigate, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import Header from "../Header/Header";
 import { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";

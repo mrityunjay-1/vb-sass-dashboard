@@ -1,11 +1,9 @@
-import { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
 const RouterPage = () => {
 
     const authData: any = useAuth();
-    const navigate = useNavigate();
 
     // useEffect(() => {
     //     if (!authData.data.isLoggedIn) {

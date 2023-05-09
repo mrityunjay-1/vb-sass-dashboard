@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import "./css/login.css";
 import { message } from "antd";
 import { useAuth } from "../../../context/AuthContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Login = ({ callback }: any) => {
+const Login = () => {
 
     const authData: any = useAuth();
 

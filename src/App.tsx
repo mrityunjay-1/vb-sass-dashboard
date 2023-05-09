@@ -1,4 +1,3 @@
-import { Suspense, lazy, useEffect } from "react";
 import { NavLink, Routes, Route, Navigate, useParams } from "react-router-dom";
 import "./App.css";
 import ChatHistory from "./component/ChatHistory/ChatHistory";
@@ -16,8 +15,7 @@ import PageNotFound from "./component/PageNotFound";
 
 console.log("import.meta.env : ", import.meta.env);
 
-
-const CreateBot = lazy(() => import("./component/CreateBot"));
+import CreateBot from "./component/CreateBot";
 
 const App = () => {
 
@@ -30,14 +28,14 @@ const App = () => {
 
   console.log("params :", params);
 
-  useEffect(() => {
-    // authData.checkIfLoggedIn();
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   // authData.checkIfLoggedIn();
+  //   // eslint-disable-next-line
+  // }, []);
 
   return (
     <>
-      <Suspense>
+
         {
           authData.data.isLoggedIn ?
             <div className="container">
@@ -116,7 +114,7 @@ const App = () => {
               <Route path="/*" element={<></>} />
             </Routes>
         }
-      </Suspense>
+
 
     </>
   );
