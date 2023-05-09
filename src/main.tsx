@@ -7,6 +7,9 @@ import { Auth } from "./context/AuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
+if (import.meta.env.PROD) {
+  console.log = () => { };
+}
 
 root.render(
   <>

@@ -12,6 +12,7 @@ import SignUp from "./component/Auth/SignUp";
 import RouterPage from "./component/RouterPage";
 import ForgetPassword from "./component/Auth/ForgetPassword";
 import PageNotFound from "./component/PageNotFound";
+import { HeatMapOutlined } from "@ant-design/icons";
 
 const CreateBot = lazy(() => import("./component/CreateBot"));
 const WelcomePage = lazy(() => import("./component/WelcomePage"));
@@ -44,13 +45,17 @@ const App = () => {
 
                 {/* Logo -> situated at left top most corner */}
                 <NavLink to="/" className="logo-container" style={{ backgroundColor: "white" }}>
-                  <img alt="logo" src="https://vil-email-sprint-dashboard.oriserve.com/static/media/ori-logo-solo.2b103573806a735ad176.png" style={{ width: "50%" }} />
+                  <img title="Talk Fusion" alt="logo" src="https://vil-email-sprint-dashboard.oriserve.com/static/media/ori-logo-solo.2b103573806a735ad176.png" style={{ width: "45%", marginBottom: "0.5rem" }} />
                   <center><p>v1.1</p></center>
                 </NavLink>
 
                 {/* Rendering all the routes */}
 
                 {/* rendering route when bot is selected by user */}
+                <NavLink target="_blank" to={`https://mrityunjay.site`} className="logo-container" style={{ display: "grid", placeItems: "center", width: "100%", margin: "0.3rem", padding: "1rem", backgroundColor: "lightgrey" }}>
+                  <h1><HeatMapOutlined /></h1>
+                  <p>Help</p>
+                </NavLink>
 
                 {
                   authData?.data?.isBotSelectedForEditing && routes?.map((route: any, index) => {

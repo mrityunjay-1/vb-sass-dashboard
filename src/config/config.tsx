@@ -2,12 +2,6 @@ import { WechatOutlined, HistoryOutlined } from "@ant-design/icons";
 
 const routes = [
     {
-        routeName: "Help",
-        routeUrl: "/help",
-        icon: <WechatOutlined />,
-        renderOn: "generally"
-    },
-    {
         routeName: "Live Chats",
         routeUrl: "liveConversations",
         icon: <WechatOutlined />,

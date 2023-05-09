@@ -13,7 +13,9 @@ const WelcomePage = () => {
 
     return (
         <>
-            <Header Title={"WELCOME TO TALK FUSION"} />
+            <Header>
+                <span style={{ fontSize: "1.7rem", fontWeight: 599 }}>WELCOME TO VOICE BOT</span>
+            </Header>
 
             {/* <h1>Welcome</h1> */}
 
