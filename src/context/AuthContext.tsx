@@ -73,7 +73,14 @@ const Auth = ({ children }: any) => {
 
             console.log("user sign up details : ", { name, email, password });
 
-            const res = await fetchData({ url: "/userSignUp", method: "POST", data: { name, email, password } });
+            const res = await fetchData({ 
+                url: "/userSignUp", 
+                method: "POST", 
+                data: { name, email, password }, 
+                headers: {
+                    "Content-Type": "application/json"
+                } 
+            });
 
             console.log("Sign up response: ", res);
 

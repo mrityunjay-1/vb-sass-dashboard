@@ -21,7 +21,7 @@ const Login = () => {
             }
 
             authData.login({ email: username, password });
-            navigate("/home");
+            navigate("/");
 
         } catch (err) {
             console.error(err);

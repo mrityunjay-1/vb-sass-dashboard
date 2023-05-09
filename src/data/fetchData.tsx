@@ -11,7 +11,6 @@ const fetchData = async ({ url = "/", method = "GET", headers = {}, data = {} }:
 
         let newHeaders = {
             "Authorization": "Bearer " + localData?.token,
-            "Content-Type": "application/json"
         };
 
         if (Object.keys(headers).length > 0) {

@@ -1,0 +1,59 @@
+.file-upload-container {
+    /* background-color: red; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    height: 100vh;
+}
+
+.main-container {
+    /* background-color: grey; */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+/* form */
+.main-container>div:nth-child(1) {
+    height: 5rem;
+    background-color: rgb(235, 235, 235);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 0.1rem solid lightgrey;
+    padding: 0 3rem;
+}
+
+/* File Data */
+.main-container>div:nth-child(2) {
+    background-color: white;
+    margin: 1.5rem 1.5rem 1.5rem 1.5rem;
+    border: 0.1rem solid lightgrey;
+    padding: 2rem;
+    border-radius: 0.3rem;
+    flex: 1;
+    overflow: auto;
+}
+
+/* Submit Button */
+.main-container>div:nth-child(3) {
+    /* background-color: white; */
+    margin: 1.5rem;
+    /* border: 0.1rem solid lightgrey; */
+    border-radius: 0.3rem;
+    overflow: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.call-history-container-summary-filter {
+    height: 5rem;
+    background-color: rgb(235, 235, 235);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 0.1rem solid lightgrey;
+
+}

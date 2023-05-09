@@ -13,6 +13,8 @@ import RouterPage from "./component/RouterPage";
 import ForgetPassword from "./component/Auth/ForgetPassword";
 import PageNotFound from "./component/PageNotFound";
 import { HeatMapOutlined } from "@ant-design/icons";
+import QnATraning from "./component/BotTraining/QnATraining.tsx";
+import Summary from "./component/Summary/index.tsx";
 
 const CreateBot = lazy(() => import("./component/CreateBot"));
 const WelcomePage = lazy(() => import("./component/WelcomePage"));
@@ -88,12 +90,16 @@ const App = () => {
                   <Route path="/liveConversations" element={<LiveChat />} /> */}
 
                   <Route path="/manage-bot/:botId/" >
-                    <Route index path="" element={<CreateBot />} />
+                    <Route index path="" element={<Summary />} />
                     <Route path="chatHistory" element={<ChatHistory />} />
+
+                    {/* AI Training Routes */}
+                    <Route path="qnaTrain" element={<QnATraning />} />
+
                   </Route>
 
                   {/* Create Bot Route */}
-                  <Route path="/create-bot" element={<>Create bot</>} />
+                  <Route path="/create-bot" element={<CreateBot />} />
 
                   {/* handling Auth Routes */}
                   <Route path="/login" element={<Navigate to="/" />} />
