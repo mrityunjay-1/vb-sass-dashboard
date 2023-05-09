@@ -1,21 +1,20 @@
-import { NavLink, Routes, Route, Navigate, useParams } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import "./App.css";
+
+import { NavLink, Routes, Route, Navigate, useParams } from "react-router-dom";
 import ChatHistory from "./component/ChatHistory/ChatHistory";
-// import LiveChat from "./component/LiveChat";
 
 import { routes } from "./config/config";
 
 import Login from "./component/Auth/Login";
 import { useAuth } from "./context/AuthContext";
 import SignUp from "./component/Auth/SignUp";
-import WelcomePage from "./component/WelcomePage";
 import RouterPage from "./component/RouterPage";
 import ForgetPassword from "./component/Auth/ForgetPassword";
 import PageNotFound from "./component/PageNotFound";
 
-console.log("import.meta.env : ", import.meta.env);
-
-import CreateBot from "./component/CreateBot";
+const CreateBot = lazy(() => import("./component/CreateBot"));
+const WelcomePage = lazy(() => import("./component/WelcomePage"));
 
 const App = () => {
 
@@ -35,7 +34,7 @@ const App = () => {
 
   return (
     <>
-
+      <Suspense fallback={<h1>Loading...</h1>}>
         {
           authData.data.isLoggedIn ?
             <div className="container">
@@ -115,7 +114,7 @@ const App = () => {
             </Routes>
         }
 
-
+      </Suspense>
     </>
   );
 }
