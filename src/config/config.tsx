@@ -8,6 +8,12 @@ const routes = [
         renderOn: "botSelectedForEdit"
     },
     {
+        routeName: "Test Bot",
+        routeUrl: "test-bot",
+        icon: <WechatOutlined />,
+        renderOn: "botSelectedForEdit"
+    },
+    {
         routeName: "Live Chats",
         routeUrl: "liveConversations",
         icon: <WechatOutlined />,

@@ -24,6 +24,10 @@ const CreateBot = () => {
     const createBot = async () => {
         try {
 
+            if (!botName) {
+                return message.error("Please enter bot name to be created!");
+            }
+
             const res = await fetchData({
                 url: "/createBot",
                 method: "POST",
@@ -52,18 +56,32 @@ const CreateBot = () => {
 
             <Header Title="Create Bot" />
 
-            <div>
-                <h1>Let's Create Bot</h1>
+            <div style={{ flex: 1, display: "grid", placeItems: "center", marginTop: "2rem" }}>
 
-                <input
-                    type="text"
-                    value={botName}
-                    onChange={(e) => {
-                        setBotName(e.target.value);
-                    }}
-                />
+                <div style={{ width: "80%", backgroundColor: "white", border: "0.01rem solid grey", padding: "2rem", display: "flex", flexDirection: "column"}}>
 
-                <button onClick={createBot}>Create</button>
+                    <h1>Let's Create Bot</h1>
+
+                    <br />
+                    <br />
+
+                    <input
+                        type="text"
+                        value={botName}
+                        onChange={(e) => {
+                            setBotName(e.target.value);
+                        }}
+                        style={{ padding: "1rem" }}
+                        placeholder="Bot Name"
+                    />
+
+                    <br />
+                    <br />
+
+                    <button onClick={createBot}>Create</button>
+
+                </div>
+
             </div>
 
             {/* <Navigate to="/channels"></Navigate> */}

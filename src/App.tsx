@@ -15,6 +15,7 @@ import PageNotFound from "./component/PageNotFound";
 import { HeatMapOutlined } from "@ant-design/icons";
 import QnATraning from "./component/BotTraining/QnATraining.tsx";
 import Summary from "./component/Summary/index.tsx";
+import TestBot from "./component/TestBot/index.tsx";
 
 const CreateBot = lazy(() => import("./component/CreateBot"));
 const WelcomePage = lazy(() => import("./component/WelcomePage"));
@@ -48,7 +49,7 @@ const App = () => {
                 {/* Logo -> situated at left top most corner */}
                 <NavLink to="/" className="logo-container" style={{ backgroundColor: "white" }}>
                   <img title="Talk Fusion" alt="logo" src="https://vil-email-sprint-dashboard.oriserve.com/static/media/ori-logo-solo.2b103573806a735ad176.png" style={{ width: "45%", marginBottom: "0.5rem" }} />
-                  <center><p>v1.1</p></center>
+                  <center><p>v{import.meta.env.VITE_APP_VERSION}</p></center>
                 </NavLink>
 
                 {/* Rendering all the routes */}
@@ -95,6 +96,9 @@ const App = () => {
 
                     {/* AI Training Routes */}
                     <Route path="qnaTrain" element={<QnATraning />} />
+
+                    {/* Testing the Bot */}
+                    <Route path="test-bot" element={<TestBot />} />
 
                   </Route>
 
