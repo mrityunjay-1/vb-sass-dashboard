@@ -186,7 +186,7 @@ const QnATraning = () => {
             console.log("hey");
             const c: any = document.getElementById("cont");
             c.scrollTop = 0;
-        }, 100);
+        }, 200);
 
         auth.setBotInContext(params.botId);
 
@@ -325,6 +325,11 @@ const QnATraning = () => {
                                     answer={""}
                                     onCancel={(res: boolean) => setAddQnA(res)}
                                     isInEditMode={true}
+                                    botId={params.botId}
+                                    onSave={(newQna: any) => {
+                                        setQnaData([newQna, ...qnaData]);
+                                        setAddQnA(false);
+                                    }}
                                 />
                                 :
                                 null
@@ -338,7 +343,19 @@ const QnATraning = () => {
                             qnaData?.map((qna: any) => {
                                 return (
                                     <div style={{ borderRadius: "0.5rem" }}>
-                                        <AddQnA isNew={false} question={qna.question} answer={qna.answer} qna={qna} />
+                                        <AddQnA
+                                            isNew={false}
+                                            question={qna.question}
+                                            answer={qna.answer}
+                                            qna={qna}
+                                            botId={params.botId}
+                                            onSave={() => {
+                                                loadQnaData();
+                                            }}
+                                            onUpdate={() => {
+                                                loadQnaData();
+                                            }}
+                                        />
                                     </div>
                                 )
                             })
