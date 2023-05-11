@@ -328,6 +328,13 @@ const QnATraning = () => {
                     <div className="main-container-child-3">
 
                         {
+                            qnaData?.length === 0 ?
+                                <h1 style={{ textAlign: "center" }}>No QnA Data Added.</h1>
+                                :
+                                null
+                        }
+
+                        {
                             qnaData?.map((qna: any) => {
                                 return (
                                     <div style={{ borderRadius: "0.5rem" }} key={v4()}>

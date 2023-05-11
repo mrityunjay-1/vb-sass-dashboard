@@ -31,3 +31,9 @@
     align-items: center;
     border-top: 0.1rem solid lightgrey;
 }
+
+@media(max-width: 76rem) {
+.main-container-child-3 {
+    grid-template-columns: 100%;
+}
+}

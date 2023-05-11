@@ -1,7 +1,7 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import "./App.css";
 
-import { NavLink, Routes, Route, Navigate, useParams } from "react-router-dom";
+import { NavLink, Routes, Route, Navigate, useParams, useNavigate } from "react-router-dom";
 import ChatHistory from "./component/ChatHistory/ChatHistory";
 
 import { routes } from "./config/config";
@@ -12,7 +12,7 @@ import SignUp from "./component/Auth/SignUp";
 import RouterPage from "./component/RouterPage";
 import ForgetPassword from "./component/Auth/ForgetPassword";
 import PageNotFound from "./component/PageNotFound";
-import { HeatMapOutlined } from "@ant-design/icons";
+// import { HeatMapOutlined } from "@ant-design/icons";
 import QnATraning from "./component/BotTraining/QnATraining.tsx";
 import Summary from "./component/Summary/index.tsx";
 import TestBot from "./component/TestBot/index.tsx";
@@ -24,6 +24,10 @@ const WelcomePage = lazy(() => import("./component/WelcomePage"));
 const App = () => {
 
   const authData: any = useAuth();
+
+  const navigate = useNavigate();
+
+  const [toggleSideBar, setToggleSideBar] = useState(false);
 
   console.log("authdata : ", authData.data);
 
@@ -37,6 +41,12 @@ const App = () => {
   //   // eslint-disable-next-line
   // }, []);
 
+  const toggleMobileSidebar = () => {
+    const leftContainer: any = document.getElementById("container-left");
+    leftContainer.classList.toggle("mobile-side-bar-active");
+    setToggleSideBar(!toggleSideBar);
+  }
+
   return (
     <>
       <Suspense fallback={<h1>Loading...</h1>}>
@@ -44,11 +54,19 @@ const App = () => {
           authData.data.isLoggedIn ?
             <div className="container">
 
+              {/* Mobile View */}
+              <div className="mobile-header">
+                <h1 onClick={() => navigate("/")}>
+                  Talk fusion
+                </h1>
+                <button onClick={toggleMobileSidebar} style={{ fontSize: "2rem" }}>{toggleSideBar ? <>&times;</> : <>&#9776;</>} </button>
+              </div>
+
               {/* Left Side panel Container */}
-              <div className="container-left">
+              <div id="container-left" className="container-left">
 
                 {/* Logo -> situated at left top most corner */}
-                <NavLink to="/" className="logo-container" style={{ backgroundColor: "white" }}>
+                <NavLink onClick={() => toggleMobileSidebar()} to="/" className="logo-container" style={{ backgroundColor: "white" }}>
                   <img title="Talk Fusion" alt="logo" src="https://vil-email-sprint-dashboard.oriserve.com/static/media/ori-logo-solo.2b103573806a735ad176.png" style={{ width: "45%", marginBottom: "0.5rem" }} />
                   <center><p>v{import.meta.env.VITE_APP_VERSION}</p></center>
                 </NavLink>
@@ -56,16 +74,16 @@ const App = () => {
                 {/* Rendering all the routes */}
 
                 {/* rendering route when bot is selected by user */}
-                <NavLink target="_blank" to={`https://mrityunjay.site`} className="logo-container" style={{ display: "grid", placeItems: "center", width: "100%", margin: "0.3rem", padding: "1rem", backgroundColor: "lightgrey" }}>
+                {/* <NavLink target="_blank" to={`https://mrityunjay.site`} className="logo-container" style={{ display: "grid", placeItems: "center", margin: "0.3rem", padding: "1rem", backgroundColor: "lightgrey" }}>
                   <h1><HeatMapOutlined /></h1>
                   <p>Help</p>
-                </NavLink>
+                </NavLink> */}
 
                 {
                   authData?.data?.isBotSelectedForEditing && routes?.map((route: any) => {
                     return (
                       <>
-                        <NavLink key={v4()} to={`/manage-bot/${authData?.data?.botId}/${route?.routeUrl}`} className={({ isActive }) => (["nav-link", isActive ? "active" : null].join(" "))} >
+                        <NavLink onClick={() => toggleMobileSidebar()} key={v4()} to={`/manage-bot/${authData?.data?.botId}/${route?.routeUrl}`} className={({ isActive }) => (["nav-link", isActive ? "active" : null].join(" "))} >
                           <h1>{route.icon}</h1>
                           <p>{route?.routeName}</p>
                         </NavLink>

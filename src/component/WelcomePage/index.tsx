@@ -6,6 +6,8 @@ import fetchData from "../../data/fetchData";
 import { BoxPlotFilled, DeleteFilled, EditFilled, HomeFilled, ReadOutlined, TransactionOutlined } from "@ant-design/icons";
 import { message } from "antd";
 
+import "./css/index.css";
+
 const WelcomePage = () => {
 
     const auth: any = useAuth();
@@ -75,7 +77,7 @@ const WelcomePage = () => {
 
             <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", padding: "2rem" }}>
 
-                <NavLink to="/create-bot" style={{ textDecoration: "none", color: "black", cursor: "pointer", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginBottom: "2rem", boxShadow: "0.1rem 0.1rem 0.5rem lightgrey", width: "29%", background: "white", border: "0.01rem solid grey", borderRadius: "0.3rem", padding: "2.5rem 2rem 1rem 2rem" }}>
+                <NavLink to="/create-bot" className="bot-card" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                     <br />
                     <h1>+</h1>
                     <br />
@@ -88,7 +90,7 @@ const WelcomePage = () => {
                 {
                     bots?.map((bot: any) => {
                         return (
-                            <div style={{ marginBottom: "2rem", boxShadow: "0.1rem 0.1rem 0.5rem lightgrey", width: "29%", background: "white", border: "0.01rem solid grey", borderRadius: "0.3rem", padding: "2.5rem 2rem 1rem 2rem" }}>
+                            <div className="bot-card">
                                 {/* header */}
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
 

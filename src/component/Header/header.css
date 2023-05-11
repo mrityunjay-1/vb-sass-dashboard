@@ -6,3 +6,10 @@
     box-shadow: 0.3rem 0.3rem 0.7rem lightgrey;
     align-items: center;
 }
+
+@media (max-width: 76rem) {
+    .header{
+        padding: 2%;
+        font-size: 1rem;
+    }
+}

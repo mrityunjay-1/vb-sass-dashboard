@@ -2,6 +2,7 @@ import { DeleteFilled, EditFilled } from "@ant-design/icons";
 import { Collapse, message } from "antd";
 import { useState } from "react";
 import fetchData from "../../../data/fetchData";
+import "./css/AddUpdateDeleteQnA.css";
 
 const AddQnA = ({ botId, question, answer = "", qna, isNew = true, onCancel, isInEditMode = false, onSave }: any) => {
 
