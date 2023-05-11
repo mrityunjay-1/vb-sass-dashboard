@@ -3,10 +3,9 @@ import { Collapse, message } from "antd";
 import { useState } from "react";
 import fetchData from "../../../data/fetchData";
 
-const AddQnA = ({ botId, question, answer, qna, isNew = true, onCancel, isInEditMode = false, onSave }: any) => {
+const AddQnA = ({ botId, question, answer = "", qna, isNew = true, onCancel, isInEditMode = false, onSave }: any) => {
 
     const [questions, setQuestions]: any = useState(question ?? []);
-    // const [answer, setAnswer] = useState("");
 
     const [quest, setQuest] = useState("");
     const [ans, setAns] = useState(answer);
@@ -64,12 +63,14 @@ const AddQnA = ({ botId, question, answer, qna, isNew = true, onCancel, isInEdit
 
             {isNew ? <h1 style={{ padding: "1rem 2rem" }}>Add QnA</h1> : ""}
 
+            {/* Question Area including long header */}
             <Collapse defaultActiveKey={isNew ? ['1'] : ['1']} ghost collapsible="icon" >
                 <Collapse.Panel
+                    key="1"
                     header={
                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                             <div style={{ display: "flex", }}>
-                                <p style={{ fontSize: "1.4rem", fontWeight: "bold", marginRight: "2rem" }}>{questions[0]}</p>
+                                <p style={{ fontSize: "1.4rem", fontWeight: "bold", marginRight: "2rem" }}>{questions[0] ?? "Question"}</p>
                                 <span style={{ fontSize: "1rem", backgroundColor: "orange", width: "2rem", height: "2rem", display: "grid", placeItems: "center", borderRadius: "100rem" }}> {questions.length} </span>
                             </div>
 
@@ -83,17 +84,15 @@ const AddQnA = ({ botId, question, answer, qna, isNew = true, onCancel, isInEdit
                                     null
                             }
                         </div>
-                    }
-                    key="1"
-                >
+                    }>
 
-                    <div style={{ display: "flex", flexDirection: "column", border: "0.01rem solid grey", marginTop: "-1rem", padding: "1rem" }}>
+                    <div style={{ display: "flex", flexDirection: "column", border: "0.01rem solid grey", borderRadius: "0.4rem", marginTop: "-1rem", padding: "1rem" }}>
 
                         <div id="questions-container" style={{ height: "auto", maxHeight: "10rem", overflow: "auto", scrollBehavior: "smooth", marginBottom: "0.8rem" }}>
                             {
                                 questions?.map((q: string, index: number) => {
                                     return (
-                                        <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                        <div key={(index * Math.random() * 100).toString()} style={{ display: "flex", justifyContent: "space-between" }}>
                                             <p style={{ color: "grey", width: "10%" }}>{index + 1}</p>
                                             <p style={{ color: "grey", width: "85%" }}>{q}</p>
                                             <p onClick={() => {
@@ -105,10 +104,11 @@ const AddQnA = ({ botId, question, answer, qna, isNew = true, onCancel, isInEdit
                                     );
                                 })
                             }
+
                         </div>
 
                         <input
-                            autoFocus
+                            autoFocus={isNew ? true : false}
                             type="text"
                             value={quest}
                             onChange={(e: any) => {
@@ -121,9 +121,7 @@ const AddQnA = ({ botId, question, answer, qna, isNew = true, onCancel, isInEdit
                                 if (e.key === "Enter") {
                                     setQuest("");
 
-                                    if (questions.includes(quest)) {
-                                        return message.warning("Question already present!");
-                                    }
+                                    if (questions.includes(quest)) message.warning("Question already present!");
 
                                     setQuestions([...questions, quest]);
                                     const qc: any = document.getElementById("questions-container");
@@ -136,8 +134,10 @@ const AddQnA = ({ botId, question, answer, qna, isNew = true, onCancel, isInEdit
                 </Collapse.Panel>
             </Collapse>
 
+            {/* Answer Area */}
             <Collapse accordion={false} defaultActiveKey={['1']} ghost
                 collapsible="icon"
+                style={{ backgroundColor: "#e6e6e6", border: "0.01rem solid grey", margin: "0 1.5rem" }}
             >
                 <Collapse.Panel showArrow={false} header={<div style={{ display: "flex", alignItems: "center", fontWeight: "bold", }}><p style={{ fontSize: "1.4rem", marginRight: "2rem" }}>Answer</p> </div>} key="1">
 
@@ -149,7 +149,7 @@ const AddQnA = ({ botId, question, answer, qna, isNew = true, onCancel, isInEdit
                                 setAns(e.target.value);
                             }}
                             placeholder="Please Enter Answer Here"
-                            style={{ flex: 1, padding: "0.5rem", outline: "none", color: "grey", border: "0.01rem solid grey" }}
+                            style={{ flex: 1, padding: "0.5rem", outline: "none", color: "grey", border: "0.01rem solid grey", borderRadius: "0.4rem" }}
                         />
 
                     </div>
@@ -186,22 +186,6 @@ const AddQnA = ({ botId, question, answer, qna, isNew = true, onCancel, isInEdit
                     :
                     null
             }
-
-            {/* <div style={{ padding: "0 1.5rem", display: "flex", justifyContent: "center" }}>
-                <button
-                    onClick={() => {
-                        if (isNew) onCancel(false);
-                    }}
-                    style={{ marginRight: "1rem", background: "pink" }}>
-                    Cancel
-                </button>
-                {
-                    isNew ?
-                        <button>Save</button>
-                        :
-                        <button>Update</button>
-                }
-            </div> */}
 
         </div>
     );

@@ -16,6 +16,7 @@ import { HeatMapOutlined } from "@ant-design/icons";
 import QnATraning from "./component/BotTraining/QnATraining.tsx";
 import Summary from "./component/Summary/index.tsx";
 import TestBot from "./component/TestBot/index.tsx";
+import { v4 } from "uuid";
 
 const CreateBot = lazy(() => import("./component/CreateBot"));
 const WelcomePage = lazy(() => import("./component/WelcomePage"));
@@ -61,10 +62,10 @@ const App = () => {
                 </NavLink>
 
                 {
-                  authData?.data?.isBotSelectedForEditing && routes?.map((route: any, index) => {
+                  authData?.data?.isBotSelectedForEditing && routes?.map((route: any) => {
                     return (
                       <>
-                        <NavLink key={index} to={`/manage-bot/${authData?.data?.botId}/${route?.routeUrl}`} className={({ isActive }) => (["nav-link", isActive ? "active" : null].join(" "))} >
+                        <NavLink key={v4()} to={`/manage-bot/${authData?.data?.botId}/${route?.routeUrl}`} className={({ isActive }) => (["nav-link", isActive ? "active" : null].join(" "))} >
                           <h1>{route.icon}</h1>
                           <p>{route?.routeName}</p>
                         </NavLink>

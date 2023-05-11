@@ -8,6 +8,8 @@ import { FileAddFilled, FolderAddOutlined } from "@ant-design/icons";
 import fetchData from "../../../data/fetchData";
 import AddQnA from "./AddUpdateDeleteQnA";
 
+import { v4 } from "uuid";
+
 const QnATraning = () => {
 
     const auth: any = useAuth();
@@ -172,8 +174,9 @@ const QnATraning = () => {
             }
 
             console.log("res for load qna data : ", res);
-            setQnaData(res);
-            localStorage && localStorage.setItem("qnaData", JSON.stringify(res));
+
+            setQnaData([...res]);
+            // localStorage && localStorage.setItem("qnaData", JSON.stringify(res));
 
         } catch (err) {
             console.log("Error while loadQnaData : ", err);
@@ -182,22 +185,7 @@ const QnATraning = () => {
 
     useEffect(() => {
 
-        setTimeout(() => {
-            console.log("hey");
-            const c: any = document.getElementById("cont");
-            c.scrollTop = 0;
-        }, 200);
-
         auth.setBotInContext(params.botId);
-
-        // check in cache
-        let qnaDataFromCache = localStorage?.getItem("qnaData") ?? "[]";
-
-        if (qnaDataFromCache) {
-            qnaDataFromCache = JSON.parse(qnaDataFromCache);
-        }
-
-        setQnaData(qnaDataFromCache);
 
         loadQnaData();
 
@@ -342,7 +330,7 @@ const QnATraning = () => {
                         {
                             qnaData?.map((qna: any) => {
                                 return (
-                                    <div style={{ borderRadius: "0.5rem" }}>
+                                    <div style={{ borderRadius: "0.5rem" }} key={v4()}>
                                         <AddQnA
                                             isNew={false}
                                             question={qna.question}
@@ -356,6 +344,7 @@ const QnATraning = () => {
                                                 loadQnaData();
                                             }}
                                         />
+
                                     </div>
                                 )
                             })
