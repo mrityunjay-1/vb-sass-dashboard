@@ -137,6 +137,11 @@ const QnATraning = () => {
 
             console.log("response from server at finalDataForQnaTraining route : ", res);
 
+            message.success("QnAs successfully uploaded.");
+
+            setShowUploadFileModal(false);
+
+            loadQnaData();
 
         } catch (err) {
             console.log("Error: ", err);

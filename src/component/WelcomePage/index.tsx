@@ -71,13 +71,9 @@ const WelcomePage = () => {
                 <span style={{ fontSize: "1.7rem", fontWeight: 599 }}>WELCOME TO VOICE BOT</span>
             </Header>
 
-            {/* <NavLink to={"/create-bot"}>Create Bot</NavLink> */}
+            <div className="bot-container">
 
-
-
-            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", padding: "2rem" }}>
-
-                <NavLink to="/create-bot" className="bot-card" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                <NavLink to="/create-bot" className="bot-card" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                     <br />
                     <h1>+</h1>
                     <br />

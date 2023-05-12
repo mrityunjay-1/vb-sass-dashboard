@@ -16,12 +16,10 @@
 
 .main-container-child-3 {
     display: grid;
-    grid-template-columns: 49.5% 49.5%;
+    grid-template-columns: 99%;
     gap: 1.5rem 1%;
     padding: 1rem;
-
 }
-
 
 .call-history-container-summary-filter {
     height: 5rem;
