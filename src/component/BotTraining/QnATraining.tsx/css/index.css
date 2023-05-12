@@ -8,10 +8,10 @@
     height: 5rem;
     background-color: rgb(235, 235, 235);
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     border-top: 0.1rem solid lightgrey;
-    padding: 0 3rem;
+    padding: 0 2rem;
 }
 
 .main-container-child-3 {

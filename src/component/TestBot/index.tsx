@@ -45,7 +45,7 @@ const TestBot = () => {
                 <br />
 
                 <h1>Integrate</h1>
-                <Code text={`<script src="https://startup-901-bucket.s3.ap-south-1.amazonaws.com/script.js" botid="${params.botId}"> </script>`} />
+                <Code text={`<script src="https://startup-901-bucket.s3.ap-south-1.amazonaws.com/script2.js" botId="${params.botId}"> </script>`} />
 
             </div>
 

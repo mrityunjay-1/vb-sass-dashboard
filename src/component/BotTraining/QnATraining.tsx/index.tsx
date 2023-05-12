@@ -20,7 +20,7 @@ const QnATraning = () => {
 
     const [qnaData, setQnaData]: any = useState([]);
 
-    console.log("qnaData : ", qnaData);
+    const [searchText, setSearchText] = useState("");
 
     const [showUploadFileModal, setShowUploadFileModal] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -184,11 +184,8 @@ const QnATraning = () => {
     }
 
     useEffect(() => {
-
         auth.setBotInContext(params.botId);
-
         loadQnaData();
-
     }, []);
 
     // useEffect(() => {
@@ -299,8 +296,14 @@ const QnATraning = () => {
 
                     {/* Child 1 -> contains form for uploading xlsx file that contains question and answer */}
                     <div className="main-container-child-1">
-                        <button style={{ background: "lightgreen", fontSize: "1.6rem", fontWeight: "normal", padding: "0.6rem 1.2rem", marginRight: "1rem" }} onClick={() => setShowUploadFileModal(true)}> <FolderAddOutlined /> &nbsp; Train Bot By File Upload </button>
-                        <button style={{ background: "lightgreen", fontSize: "1.6rem", fontWeight: "normal", padding: "0.6rem 1.2rem" }} onClick={() => { setAddQnA(true); }}> <FileAddFilled /> Add QnA </button>
+                        <div style={{ flex: 1 }}>
+                            <button style={{ background: "green", color: "white", fontSize: "1.3rem", fontWeight: "normal", padding: "0.6rem 1.2rem", marginRight: "1rem" }} onClick={() => setShowUploadFileModal(true)}> <FolderAddOutlined /> &nbsp; Upload File </button>
+                            <button style={{ background: "green", color: "white", fontSize: "1.3rem", fontWeight: "normal", padding: "0.6rem 1.2rem", marginRight: "1rem" }} onClick={() => { setAddQnA(true); }}> <FileAddFilled /> Add QnA </button>
+                            <input value={searchText} onEnded={() => { console.log("wow") }} onChange={(e) => setSearchText(e.target.value)} placeholder="Search QnA" style={{ width: "30%", border: "0.01rem solid grey", fontSize: "1.3rem", fontWeight: "normal", padding: "0.6rem 1.2rem", borderRadius: "0.3rem" }} type="text" />
+                        </div>
+                        <div>
+                            <button style={{ background: "green", color: "white", fontSize: "1.3rem", fontWeight: "normal", padding: "0.6rem 1.2rem", borderRadius: "0.3rem" }} onClick={() => setShowUploadFileModal(true)}> <FolderAddOutlined /> &nbsp; Train </button>
+                        </div>
                     </div>
 
                     {/* QnA Add */}

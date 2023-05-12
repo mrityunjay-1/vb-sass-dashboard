@@ -1,15 +1,21 @@
 import { DeleteFilled, EditFilled } from "@ant-design/icons";
 import { Collapse, message } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import fetchData from "../../../data/fetchData";
 import "./css/AddUpdateDeleteQnA.css";
 
-const AddQnA = ({ botId, question, answer = "", qna, isNew = true, onCancel, isInEditMode = false, onSave }: any) => {
+const AddQnA = ({ botId, question, answer = "", qna, isNew = true, onCancel, isInEditMode = false, onSave, onUpdate }: any) => {
 
+    // For Question
     const [questions, setQuestions]: any = useState(question ?? []);
+    const [questionsDup, _setQuestionsDup] = useState(question ?? []);
 
+    // This is temporary only while adding the question
     const [quest, setQuest] = useState("");
+
+    // Answer
     const [ans, setAns] = useState(answer);
+    const [ansDup, _setAnsDup] = useState(answer);
 
     const [editMode, setEditMode] = useState(isInEditMode);
 
@@ -59,8 +65,47 @@ const AddQnA = ({ botId, question, answer = "", qna, isNew = true, onCancel, isI
         }
     }
 
+    const updateQnA = async () => {
+        try {
+
+            const res: any = await fetchData({
+                url: `/updateQnA/${qna._id}`,
+                method: "POST",
+                data: {
+                    question: questions,
+                    answer: ans
+                },
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            console.log("res from update QNA API : ", res);
+
+            if (!res) {
+                message.error("Sorry, Something went wrong as empty response received from api...");
+                throw new Error("something went wrong as empty response received from api...");
+            }
+
+            message.success("QnA Successfully updated.");
+
+            onUpdate();
+
+        } catch (err) {
+            console.log("Error while updating QNA: ", err);
+        }
+    }
+
+    useEffect(() => {
+
+        if ((JSON.stringify(questions) !== JSON.stringify(questionsDup)) || ans !== ansDup) {
+            setEditMode(true);
+        }
+
+    }, [questions, ans]);
+
     return (
-        <div style={{ display: "flex", flexDirection: "column", backgroundColor: "white", paddingBottom: "2rem", border: "0.1rem solid lightgrey", borderRadius: "0.7rem", boxShadow: "0.1rem 0.1rem 0.5rem grey" }}>
+        <div style={{ display: "flex", flexDirection: "column", backgroundColor: "white", paddingBottom: "2rem", border: "0.1rem solid darkgrey", borderRadius: "0.7rem", boxShadow: "0.1rem 0.1rem 1rem lightgrey" }}>
 
             {isNew ? <h1 style={{ padding: "1rem 2rem" }}>Add QnA</h1> : ""}
 
@@ -180,7 +225,7 @@ const AddQnA = ({ botId, question, answer = "", qna, isNew = true, onCancel, isI
                                 isNew ?
                                     <button onClick={saveQnA}>Save</button>
                                     :
-                                    <button>Update</button>
+                                    <button onClick={updateQnA}>Update</button>
                             }
                         </div>
                     </>
