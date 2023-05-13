@@ -23,4 +23,8 @@
     .bot-card {
         width: 100%;
     }
+
+    .bot-container {
+        grid-template-columns: 90%;
+    }
 }

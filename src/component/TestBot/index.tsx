@@ -33,7 +33,7 @@ const TestBot = () => {
         <>
 
             <Header>
-                <span style={{ fontWeight: 599 }}>Test & Integrate</span>
+                <span>Test & Integrate</span>
             </Header>
 
             <div style={{ padding: "1rem" }}>

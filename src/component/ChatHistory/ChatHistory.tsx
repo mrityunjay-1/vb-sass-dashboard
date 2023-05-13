@@ -235,7 +235,7 @@ const ChatHistory = () => {
 
             <div className="call-history-container-header" style={{}}>
                 <Header>
-                    <span style={{ fontSize: "1.7rem", fontWeight: 599 }}>CALL HISTORY</span>
+                    <span>CALL HISTORY</span>
                 </Header>
             </div>
 

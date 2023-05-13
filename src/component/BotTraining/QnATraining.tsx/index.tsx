@@ -294,7 +294,7 @@ const QnATraning = () => {
             <div style={{ display: "flex", flexDirection: "column", height: "100%", }}>
 
                 <div>
-                    <Header> <span style={{ fontSize: "1.7rem", fontWeight: 599 }}>QnA Traning</span> </Header>
+                    <Header> <span>QnA Traning</span> </Header>
                 </div>
 
                 <div className="main-container" id="cont">

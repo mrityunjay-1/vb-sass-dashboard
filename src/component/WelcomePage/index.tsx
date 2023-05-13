@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import { useAuth } from "../../context/AuthContext";
 import { useEffect, useState } from "react";
 import fetchData from "../../data/fetchData";
-import { BoxPlotFilled, DeleteFilled, EditFilled, HomeFilled, ReadOutlined, TransactionOutlined } from "@ant-design/icons";
+import { BoxPlotFilled, DeleteFilled, EditFilled, HomeFilled, PlusCircleOutlined, ReadOutlined, TransactionOutlined } from "@ant-design/icons";
 import { message } from "antd";
 
 import "./css/index.css";
@@ -68,14 +68,14 @@ const WelcomePage = () => {
     return (
         <>
             <Header>
-                <span style={{ fontSize: "1.7rem", fontWeight: 599 }}>WELCOME TO VOICE BOT</span>
+                <span>WELCOME TO VOICE BOT</span>
             </Header>
 
             <div className="bot-container">
 
                 <NavLink to="/create-bot" className="bot-card" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                     <br />
-                    <h1>+</h1>
+                    <h1> <PlusCircleOutlined /> </h1>
                     <br />
                     <br />
                     <h1>Create Bot</h1>

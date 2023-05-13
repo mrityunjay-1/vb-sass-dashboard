@@ -15,7 +15,7 @@ const Summary = () => {
     return (
         <>
 
-            <Header> <span style={{ fontSize: "1.7rem", fontWeight: 599 }}>Bot Summary</span> </Header>
+            <Header> <span>Bot Summary</span> </Header>
 
             <h1>Bot Summary</h1>
         </>
